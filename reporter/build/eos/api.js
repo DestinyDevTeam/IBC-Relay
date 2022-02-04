@@ -5,17 +5,23 @@ const eosjs_1 = require("eosjs");
 const eosjs_jssig_1 = require("eosjs/dist/eosjs-jssig");
 const util_1 = require("util");
 const networks_1 = require("./networks");
-const dotenv_1 = require("../dotenv");
+
 exports.getApi = (() => {
     const apis = {};
     return (networkName) => {
         if (!apis[networkName]) {
-            const envConfig = dotenv_1.getEnvConfig();
-            if (!envConfig[networkName])
-                throw new Error(`Environment variables not loaded for: ${networkName}`);
+            
+            if (!process.env.WATCH_NET)
+                throw new Error(`Environment variables not loaded for: ${process.env.WATCH_NET}`);
+            
+            //Ok let's do it that way then ...
+            const val = process.env.TELOS_IBC;
+            if(!val) return;
+            
+            const [acc, permission, key] = val.split.val.split(`;`).map((x) => x.trim());
+            
             const signatureProvider = new eosjs_jssig_1.JsSignatureProvider([
-                envConfig[networkName].reporterKey,
-                envConfig[networkName].cpuKey,
+                key
             ].filter(Boolean));
             apis[networkName] = new eosjs_1.Api({
                 rpc: networks_1.getRpc(networkName),
