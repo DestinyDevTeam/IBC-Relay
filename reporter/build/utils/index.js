@@ -41,6 +41,7 @@ exports.pickRandom = (array) => {
 };
 exports.extractRpcError = (err) => {
     let message = err.message;
+    console.log(err);
     if (err instanceof eosjs_1.RpcError) {
         try {
             message = JSON.parse(err.message).error.details.map(detail => {
