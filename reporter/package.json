@@ -8,8 +8,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "preinstall": "npm install -g pm2",
-    "start": "pm2-runtime start ecosystem.config.js --env production"
+    "start-dev": "NODE_ENV=development nodemon --exec ts-node src/index.ts",
+    "start": "NODE_ENV=production node build/index.js",
+    "build": "NODE_ENV=production tsc && npm run post-build",
+    "post-build": "cp -R src/views/ build/views/ && rm -rf logs"
   },
   "dependencies": {
     "body-parser": "^1.18.1",
