@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("./dotenv");
+// require("./dotenv");
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const routes_1 = require("./routes");
@@ -11,7 +11,7 @@ const logger_1 = require("./logger");
 //import { NETWORKS_TO_WATCH } from "./utils";
 const reporter_1 = __importDefault(require("./reporter"));
 const networks_1 = require("./eos/networks");
-const dotenv_1 = require("./dotenv");
+const dotenv_1 = dotenv.config({silent: true}); // require("./dotenv");
 async function start() {
     const app = express_1.default();
     
