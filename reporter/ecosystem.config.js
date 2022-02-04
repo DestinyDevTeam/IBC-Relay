@@ -4,6 +4,8 @@ module.exports = {
     {
       name: "ibc-worker",
       script: "./build/index.js",
+      "instances": "max",
+      "exec_mode": "cluster",
       env: {
         PORT: process.env.PORT,
         TELOS_ENDPOINT: process.env.TELOS_ENDPOINT,
