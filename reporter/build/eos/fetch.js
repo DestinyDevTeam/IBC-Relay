@@ -92,6 +92,7 @@ exports.sendTransaction = (network) => async (actions) => {
         expireSeconds: 60 * 5,
     };
     const eosApi = api_1.getApi(network);
+    console.log("sendTransaction", network);
     /*
     const config = dotenv_1.getEnvConfig()[network];
     if (config.cpuPayer) {
