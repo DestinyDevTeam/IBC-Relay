@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "preinstall": "npm install -g pm2",
-    "start": "DEBUG=\"*\" pm2 start ecosystem.config.js --env production"
+    "start": "DEBUG=\"*\" PORT=1111 pm2 start ecosystem.config.js --env production"
   },
   "dependencies": {
     "body-parser": "^1.18.1",
