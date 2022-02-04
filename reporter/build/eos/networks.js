@@ -101,6 +101,7 @@ exports.getRpc = (() => {
     const rpcs = {};
     return (networkName) => {
         if (!rpcs[networkName]) {
+            console.log(networkName);
             rpcs[networkName] = new eosjs_1.JsonRpc(getNetwork(networkName).nodeEndpoint, {
                 fetch: node_fetch_1.default,
             });
