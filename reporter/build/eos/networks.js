@@ -6,18 +6,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getRpc = exports.getContractsForNetwork = void 0;
 const eosjs_1 = require("eosjs");
 const node_fetch_1 = __importDefault(require("node-fetch"));
-const dotenv_1 = require("../dotenv");
+
 const utils_1 = require("../utils");
 exports.getContractsForNetwork = (network) => {
-    const envConfig = dotenv_1.getEnvConfig();
+    
     if (utils_1.isProduction()) {
         switch (network) {
             case `eos`:
-                return { ibc: `ibctknbridge`, cpuPayer: `cpu.start`, ...(envConfig.eos || {}) };
+                return { ibc: `ibctknbridge`, cpuPayer: `cpu.start`, ...(process.env.EOS_ENDPOINT || {}) };
             case `telos`:
-                return { ibc: `ibctknbridge`, cpuPayer: `cpu.start`, ...(envConfig.telos || {}) };
+                return { ibc: `ibctknbridge`, cpuPayer: `cpu.start`, ...(process.env.TELOS_ENDPOINT || {}) };
             case `wax`:
-                return { ibc: `ibctknbridge`, cpuPayer: `cpu.start`, ...(envConfig.wax || {}) };
+                return { ibc: `ibctknbridge`, cpuPayer: `cpu.start`, ...(process.env.WAX_ENDPOINT || {}) };
             default:
                 throw new Error(`No contract accounts for "${network}" network defined yet`);
         }
@@ -25,11 +25,11 @@ exports.getContractsForNetwork = (network) => {
     else {
         switch (network) {
             case `eos`:
-                return { ibc: `ibcbridgedev`, cpuPayer: null, ...(envConfig.eos || {}) };
+                return { ibc: `ibcbridgedev`, cpuPayer: null, ...(process.env.EOS_ENDPOINT || {}) };
             case `telos`:
-                return { ibc: `ibcbridgedev`, cpuPayer: null, ...(envConfig.telos || {}) };
+                return { ibc: `ibcbridgedev`, cpuPayer: null, ...(process.env.TELOS_ENDPOINT || {}) };
             case `wax`:
-                return { ibc: `ibcbridgedev`, cpuPayer: null, ...(envConfig.wax || {}) };
+                return { ibc: `ibcbridgedev`, cpuPayer: null, ...(process.env.WAX_ENDPOINT || {}) };
             default:
                 throw new Error(`No contract accounts for "${network}" network defined yet`);
         }
