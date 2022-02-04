@@ -11,7 +11,6 @@ const logger_1 = require("./logger");
 //import { NETWORKS_TO_WATCH } from "./utils";
 const reporter_1 = __importDefault(require("./reporter"));
 const networks_1 = require("./eos/networks");
-console.log("First Passed");
 const dotenv_1 = dotenv.config({silent: true}); // require("./dotenv");
 async function start() {
     const app = express_1.default();
@@ -39,6 +38,7 @@ async function start() {
     app.engine('html', require('ejs').renderFile);
     app.set('view engine', 'html');
     app.listen(PORT);
+    console.log("First Passed");
     let networks_to_watch = dotenv_1.getNetworksToWatch();
     logger_1.logger.info(`Reporter v${VERSION}: Express server has started on port ${PORT}. Open http://localhost:${PORT}/logs`);
     logger_1.logger.info(`Using endpoints ${networks_to_watch.map(network => networks_1.getRpc(network).endpoint).join(`, `)}`);
