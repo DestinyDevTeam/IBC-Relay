@@ -4,33 +4,34 @@ Nodejs app running on a server that scans all blockchans for events and handles 
 
 ---
 
-## Setup
+## Heroku
 
-- Can be deployed on servers like any other NodeJS app.
-- It's stateless and does not require any database.
-- Requries Node.js
-- Requires PM2 installed globally
-- Yarn recommended
-- Worker account setup on each chain, Should have at least 50kb of RAM available and 20ms CPU minimum.
-- For EOS worker accounts we suggest you register them in your watchlist at eospowerup.io/auto to ensure they receive resouces automatically.
+This Fork is reconfigured to run on Heroku with Pm2-runtime
 
-```bash
-yarn
-yarn build
-```
+- BuildPakc Index 1: https://github.com/timanovsky/subdir-heroku-buildpack.git ( If using a GitHub subdirectory )
 
-## PM2 Setup
+- BuildPack Index 2: heroku/nodejs
 
-- Make a copy of `prod.ecosystem.config.example.js` file as `prod.ecosystem.config.js`
-- Modify the ecosystem ENV variables with your worker account information on each chain including authority and private key. Please update the nodes from the default and point at your own node you trust for extra security.
-- If you prefer the ENV vars could be provided in another way, in which case you can remove them from the ecosystem file.
-- Run `pm2 start ./prod.ecosystem.config.js` to start the worker. Check the logs and you should see `Reporter eos: started` for each chain.
-- Monitor your logs to ensure there is no authorization errors when making reports.
+- No Procfile Required
 
-## Monitoring
+Required Heroku Environment Variables:
 
-There are some optional endpoints that can be used to check the health of the reporter, or a list of logs and performed transfer events.
+- NODE_ENV = production or development
 
-A simple health check reporting the last checked block number on the chains can be seen on [/health](http://localhost:8080/health).
+- NPM_VER = Your NPM Version
 
-Logs can be seen on [/logs](http://localhost:8080/logs).
+- PORT = 1111
+
+- PROJECT_PATH = reporter ( Or your custom GitHub subdirectory )
+
+RPC Node Endpoints:
+
+- chain_ENDPOINT where supported chains are EOS, TELOS or WAX = https://preferred.rpc.endpoint
+
+IBC COnfiguration
+
+- chain_IBC where supported chains are EOS, TELOS or WAX = Accoun, Permission, privKey, cpuPayer, cpuKey
+
+- WATCH_NET = Supported Values: eos, telos, wax
+
+Environment is set to clustered execution mode and 1 interface ( max return 8 )
