@@ -3,7 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.sendTransaction = exports.fetchHeadBlockNumbers = exports.fetchAllScopes = exports.fetchAllRows = exports.fetchRows = void 0;
 const api_1 = require("./api");
 const networks_1 = require("./networks");
-const dotenv_1 = require("../dotenv");
+
 const MAX_PAGINATION_FETCHES = 20;
 exports.fetchRows = (network) => async (options) => {
     const rpc = networks_1.getRpc(network);
@@ -86,6 +86,7 @@ exports.sendTransaction = (network) => async (actions) => {
         expireSeconds: 60 * 5,
     };
     const eosApi = api_1.getApi(network);
+    /*
     const config = dotenv_1.getEnvConfig()[network];
     if (config.cpuPayer) {
         _actions.unshift({
@@ -99,7 +100,7 @@ exports.sendTransaction = (network) => async (actions) => {
             ],
             data: {},
         });
-    }
+    }*/
     return eosApi.transact({
         actions: _actions,
     }, txOptions);
