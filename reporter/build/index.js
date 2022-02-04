@@ -11,6 +11,7 @@ const logger_1 = require("./logger");
 //import { NETWORKS_TO_WATCH } from "./utils";
 const reporter_1 = __importDefault(require("./reporter"));
 const networks_1 = require("./eos/networks");
+console.log("First Passed");
 const dotenv_1 = dotenv.config({silent: true}); // require("./dotenv");
 async function start() {
     const app = express_1.default();
