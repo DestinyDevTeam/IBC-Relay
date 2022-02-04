@@ -7,7 +7,7 @@ const networks_1 = require("./networks");
 const MAX_PAGINATION_FETCHES = 20;
 exports.fetchRows = (network) => async (options) => {
     const rpc = networks_1.getRpc(network);
-    console.log("fetchRows", network);
+    //console.log("fetchRows", network);
     const mergedOptions = {
         json: true,
         lower_bound: undefined,
@@ -20,14 +20,14 @@ exports.fetchRows = (network) => async (options) => {
         ...mergedOptions,
         lower_bound: lowerBound,
     });
-    console.log("fetchRows", result.rows);
+    //console.log("fetchRows", result.rows);
     return result.rows;
 };
 // work around the limit bug in nodeos due to max timeout
 // https://github.com/EOSIO/eos/issues/3965
 exports.fetchAllRows = (network) => async (options, indexName = `id`) => {
     const rpc = networks_1.getRpc(network);
-    console.log("fetchAllRows", network);
+    //console.log("fetchAllRows", network);
     const mergedOptions = {
         json: true,
         lower_bound: 0,
@@ -55,7 +55,7 @@ exports.fetchAllRows = (network) => async (options, indexName = `id`) => {
                 Number.parseInt(`${result.rows[result.rows.length - 1][indexName]}`, 10) + 1;
         }
     }
-    console.log("fetchRows", rows);
+    //console.log("fetchRows", rows);
     return rows;
 };
 exports.fetchAllScopes = (network) => async (contract, table) => {
@@ -75,7 +75,7 @@ exports.fetchAllScopes = (network) => async (contract, table) => {
 };
 exports.fetchHeadBlockNumbers = (network) => async () => {
     const rpc = networks_1.getRpc(network);
-    console.log("fetchHeadBlockNumbers", network);
+    //console.log("fetchHeadBlockNumbers", network);
     const response = await rpc.get_info();
     return {
         headBlockTime: response.head_block_time,
