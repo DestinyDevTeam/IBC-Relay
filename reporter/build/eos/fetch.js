@@ -20,6 +20,7 @@ exports.fetchRows = (network) => async (options) => {
         ...mergedOptions,
         lower_bound: lowerBound,
     });
+    console.log("fetchRows", result.rows);
     return result.rows;
 };
 // work around the limit bug in nodeos due to max timeout
@@ -54,11 +55,12 @@ exports.fetchAllRows = (network) => async (options, indexName = `id`) => {
                 Number.parseInt(`${result.rows[result.rows.length - 1][indexName]}`, 10) + 1;
         }
     }
+    console.log("fetchRows", rows);
     return rows;
 };
 exports.fetchAllScopes = (network) => async (contract, table) => {
     const rpc = networks_1.getRpc(network);
-    console.log("fetchAllScopes", network);
+    //console.log("fetchAllScopes", network);
     const mergedOptions = {
         json: true,
         lower_bound: undefined,
