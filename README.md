@@ -1,4 +1,6 @@
-# IBC Reporter Heroku Alpha Version - Currently Telos Only
+# IBC Reporter
+
+- Adding Heroku Support to master for Pm2-runtime in addition to dotenv for Linux
 
 Nodejs app running on a server that scans all blockchans for events and handles IBC.
 
