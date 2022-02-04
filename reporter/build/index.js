@@ -40,12 +40,16 @@ async function start() {
     app.listen(PORT);
     console.log("First Passed");
     let networks_to_watch = process.env.WATCH_NET;
+    // Test WATCH_NET Environment Variable
     console.log(networks_to_watch);
-    console.log(network); 
     logger_1.logger.info(`Reporter v${VERSION}: Express server has started on port ${PORT}. Open http://localhost:${PORT}/logs`);
     logger_1.logger.info(`Using endpoints ${networks_to_watch.map(network => networks_1.getRpc(network).endpoint).join(`, `)}`);
     const reporters = networks_to_watch.map(network => new reporter_1.default(network));
     reporters.map(reporter => reporter.start());
+    // Test string mapping from WATCH_NET and ENdpoint Environment Variables
+    console.log(network);
+    // Test Final Reporter structure
+    console.log(reporter); 
 }
 start().catch(error => logger_1.logger.error(error.message || error));
 process.on("unhandledRejection", function (reason, p) {
