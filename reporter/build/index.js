@@ -14,6 +14,7 @@ const networks_1 = require("./eos/networks");
 const dotenv_1 = require("./dotenv");
 async function start() {
     const app = express_1.default();
+    app.listen(process.env.PORT);
     app.enable("trust proxy");
     app.use(body_parser_1.default.json());
     // register express routes from defined application routes
