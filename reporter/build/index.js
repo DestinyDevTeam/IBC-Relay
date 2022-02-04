@@ -44,7 +44,7 @@ async function start() {
     console.log(networks_to_watch);
     
     // Create Array to Support strinh Mapping
-    const watch_nets = network_to_watch.split(',');
+    const watch_nets = networks_to_watch.split(',');
     
     logger_1.logger.info(`Reporter v${VERSION}: Express server has started on port ${PORT}. Open http://localhost:${PORT}/logs`);
     //logger_1.logger.info(`Using endpoints ${networks_to_watch.map(network => networks_1.getRpc(network).endpoint).join(`, `)}`);
