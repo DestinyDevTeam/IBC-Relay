@@ -3,15 +3,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require("./dotenv");
+
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
 const routes_1 = require("./routes");
 const logger_1 = require("./logger");
-//import { NETWORKS_TO_WATCH } from "./utils";
+
 const reporter_1 = __importDefault(require("./reporter"));
 const networks_1 = require("./eos/networks");
-const dotenv_1 = require("./dotenv");
+
 async function start() {
     const app = express_1.default();
     
@@ -33,13 +33,13 @@ async function start() {
     });
     // start express server
     const PORT = process.env.PORT || 8080;
-    const VERSION = process.env.npm_package_version;
+    const VERSION = process.env.NPM_VER;
     app.set('views', __dirname + '/views');
     app.engine('html', require('ejs').renderFile);
     app.set('view engine', 'html');
     app.listen(PORT);
     console.log("First Passed");
-    let networks_to_watch = dotenv_1.getNetworksToWatch();
+    let networks_to_watch = process.env.WATCH_NET;
     logger_1.logger.info(`Reporter v${VERSION}: Express server has started on port ${PORT}. Open http://localhost:${PORT}/logs`);
     logger_1.logger.info(`Using endpoints ${networks_to_watch.map(network => networks_1.getRpc(network).endpoint).join(`, `)}`);
     const reporters = networks_to_watch.map(network => new reporter_1.default(network));
