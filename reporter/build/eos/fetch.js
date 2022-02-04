@@ -7,6 +7,7 @@ const networks_1 = require("./networks");
 const MAX_PAGINATION_FETCHES = 20;
 exports.fetchRows = (network) => async (options) => {
     const rpc = networks_1.getRpc(network);
+    console.log("fetchRows", network);
     const mergedOptions = {
         json: true,
         lower_bound: undefined,
@@ -25,6 +26,7 @@ exports.fetchRows = (network) => async (options) => {
 // https://github.com/EOSIO/eos/issues/3965
 exports.fetchAllRows = (network) => async (options, indexName = `id`) => {
     const rpc = networks_1.getRpc(network);
+    console.log("fetchAllRows", network);
     const mergedOptions = {
         json: true,
         lower_bound: 0,
@@ -56,6 +58,7 @@ exports.fetchAllRows = (network) => async (options, indexName = `id`) => {
 };
 exports.fetchAllScopes = (network) => async (contract, table) => {
     const rpc = networks_1.getRpc(network);
+    console.log("fetchAllScopes", network);
     const mergedOptions = {
         json: true,
         lower_bound: undefined,
@@ -70,6 +73,7 @@ exports.fetchAllScopes = (network) => async (contract, table) => {
 };
 exports.fetchHeadBlockNumbers = (network) => async () => {
     const rpc = networks_1.getRpc(network);
+    console.log("fetchHeadBlockNumbers", network);
     const response = await rpc.get_info();
     return {
         headBlockTime: response.head_block_time,
