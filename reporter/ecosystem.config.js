@@ -4,7 +4,7 @@ module.exports = {
     {
       name: "ibc-worker",
       script: "./build/index.js",
-      "instances": "max",
+      "instances": "1",
       "exec_mode": "cluster",
       env: {
         PORT: process.env.PORT,
